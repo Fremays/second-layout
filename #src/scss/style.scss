@@ -1,0 +1,255 @@
+@use "sass:math";
+//<МИКСИНЫ>===============================================================================================
+@import "mixins";
+//</МИКСИНЫ>===============================================================================================
+//<ШРИФТЫ>===============================================================================================
+//<Подключаем шрифты>=======================================================================================
+//&display=swap&subset=cyrillic-ext
+@import "fonts";
+//</Подключаем шрифты>=======================================================================================
+//<Иконочные шрифты>==========================================================================================
+@import "icons";
+//</Иконочные шрифты>==========================================================================================
+//<Шрифт по умолчанию>==========================================================================================
+$fontFamily: "Gilroy";
+$fontSize: 16;
+//</Шрифт по умолчанию>==========================================================================================
+//</ШРИФТЫ>=======================================================================================================
+//<ПЕРЕМЕННЫЕ>==========================================================================================================
+$minWidth: 320px;
+$maxWidth: 1440;
+$maxWidthContainer: 1270;
+$md1: $maxWidthContainer+12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+$mainColor: #3A3A3A;
+$orangeColor: #E89F71;
+$grayColor: #898989;
+$darkGrayColor: #616161;
+//</ПЕРЕМЕННЫЕ>===========================================================================================================
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+@import "null";
+body {
+    color: $mainColor;
+    &._lock {
+        overflow: hidden;
+    }
+}
+
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+//<ОБОЛОЧКА>===========================================================================================================
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    &._loaded {}
+}
+
+//</ОБОЛОЧКА>===========================================================================================================
+//<ОСНОВНАЯ СЕТКА>===========================================================================================================
+._container {
+    max-width: $maxWidthContainer + px;
+    padding: 0px 15px;
+    margin: 0 auto;
+}
+
+//</ОСНОВНАЯ СЕТКА>===========================================================================================================
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
+@import "forms";
+@import "ui";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+//@import "datepicker";
+//@import "lightgallery";
+//@import "pagging";
+@import "popup";
+@import "header";
+@import "footer";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+.page {
+    flex: 1 1 auto;
+    &__main-slider {}
+}
+
+// =====================================================================================================================================================
+// index.html
+.main-slider {
+    background: #FCF8F3;
+    &__container {
+        position: relative;
+        @media (min-width: $md2+px) {
+            &::before {
+                content: "";
+                background: #F9F1E7;
+                position: absolute;
+                top: 0;
+                width: 100vw;
+                right: 376px;
+                height: 100%;
+            }
+        }
+    }
+    &__body {
+        padding: 140px 0px 0px 0px;
+        position: relative;
+        z-index: 2;
+        @media (max-width: $md2+px) {
+            padding: 80px 0px 0px 0px;
+        }
+        @media (max-width: $md2+px) {
+            padding: 50px 0px 0px 0px;
+        }
+        @media (min-width: $md2+px) {
+            display: flex;
+        }
+    }
+    &__content {
+        align-self: flex-start;
+        flex: 0 0 39.8387%;
+        @include adaptiv-value("margin-bottom", 80, 15, 1);
+    }
+    &__slider {
+        flex: 1 1 auto;
+        min-width: 0;
+        align-self: flex-end;
+        @media (min-width: $md2+px) {
+            padding: 0px 0px 0px 32px;
+        }
+    }
+}
+
+.content-main {
+    position: relative;
+    z-index: 5;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: rgba(255, 255, 255, 0.72);
+    @include adaptiv-value("padding-top", 60, 15, 1);
+    @include adaptiv-value("padding-bottom", 60, 15, 1);
+    @media (min-width: $md2+px) {
+        @include adaptiv-value("padding", 60, 1, 1);
+        background: rgba(255, 255, 255, 0.9);
+        @supports ((-weblit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(31px);
+        }
+    }
+    &__title {
+        @include adaptiv-value("font-size", 56, 24, 1);
+        font-weight: 700;
+        line-height: 120%;
+        position: absolute;
+        &:not(:last-child) {
+            margin: 0px 0px 0.285714em 0px;
+        }
+    }
+    &__text {
+        @include adaptiv-value("font-size", 20, 16, 1);
+        color: $grayColor;
+        font-weight: 500;
+        line-height: 150%;
+        &:not(:last-child) {
+            margin: 0px 0px 2.4em 0px;
+        }
+    }
+    &__button {
+        font-weight: 600;
+        @include adaptiv-value("min-height", 78, 45, 1);
+        @include adaptiv-value("font-size", 20, 16, 1);
+        background-color: $orangeColor;
+        color: #fff;
+        width: 100%;
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: #966a4e;
+            }
+        }
+    }
+}
+
+.slider-main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    &__controls {
+        align-self: stretch;
+        margin: 0px 0px 20px 0px;
+    }
+    &__body {
+        overflow: visible;
+        @media (min-width: $md2+px) {
+            @include adaptiv-value("width", 934, 290, 1);
+        }
+    }
+    &__slide {
+        position: relative;
+    }
+    &__image {
+        padding: 0px 0px 59.1% 0px;
+    }
+    &__content {
+        min-width: 295px;
+        max-height: 300px;
+        overflow: auto;
+        position: absolute;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        @include adaptiv-value("padding", 24, 15, 1);
+        background: rgba(255, 255, 255, 0.9);
+        @media (min-width: $md3+px) {
+            position: absolute;
+            min-width: 350px;
+            @include adaptiv-value("right", 40, 0, 1);
+            @include adaptiv-value("bottom", 40, 0, 1);
+        }
+        @supports ((-weblit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(31px);
+        }
+    }
+    &__title {
+        @include adaptiv-value("font-size", 28, 22, 1);
+        font-weight: 600;
+        line-height: 120%;
+        &:not(:last-child) {
+            margin: 0px 0px 0.142857em 0px;
+        }
+    }
+    &__text {
+        line-height: 150%;
+        color: $grayColor;
+        &:not(:last-child) {
+            margin: 0px 0px 0.5em 0px;
+        }
+    }
+    &__price {
+        display: flex;
+        flex-direction: row-reverse;
+        line-height: 150%;
+        align-items: center;
+        font-weight: 600;
+        justify-content: space-between;
+        @include adaptiv-value("font-size", 20, 16, 1);
+        &::before {
+            margin: 0px 0px 0px 10px;
+            font-size: 12px;
+        }
+    }
+}
+
+.controls-slider-main {
+    display: flex;
+    align-items: center;
+    &__dotts {
+        flex: 1 1 auto;
+    }
+    &__arrows {}
+}
+
+//===================================================================================================================================
+//</ОСНОВНОЙ БЛОК>====================================================================================================

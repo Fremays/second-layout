@@ -73,6 +73,7 @@ body {
 .page {
     flex: 1 1 auto;
     &__main-slider {}
+    &_advantages {}
 }
 
 // =====================================================================================================================================================
@@ -100,7 +101,7 @@ body {
         @media (max-width: $md2+px) {
             padding: 80px 0px 0px 0px;
         }
-        @media (max-width: $md2+px) {
+        @media (max-width: $md3+px) {
             padding: 50px 0px 0px 0px;
         }
         @media (min-width: $md2+px) {
@@ -111,6 +112,9 @@ body {
         align-self: flex-start;
         flex: 0 0 39.8387%;
         @include adaptiv-value("margin-bottom", 80, 15, 1);
+        @media (max-width: $md2+px) {
+            margin: 0px -15px;
+        }
     }
     &__slider {
         flex: 1 1 auto;
@@ -142,7 +146,6 @@ body {
         @include adaptiv-value("font-size", 56, 24, 1);
         font-weight: 700;
         line-height: 120%;
-        position: absolute;
         &:not(:last-child) {
             margin: 0px 0px 0.285714em 0px;
         }
@@ -175,14 +178,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    @media (max-width: $md2+px) {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
     &__controls {
         align-self: stretch;
         margin: 0px 0px 20px 0px;
+        @media (max-width: $md2+px) {
+            margin: 10px 0px 20px 0px;
+        }
     }
     &__body {
         overflow: visible;
         @media (min-width: $md2+px) {
             @include adaptiv-value("width", 934, 290, 1);
+        }
+        @media (max-width: $md2+px) {
+            margin: 0px -15px;
         }
     }
     &__slide {
@@ -195,7 +208,6 @@ body {
         min-width: 295px;
         max-height: 300px;
         overflow: auto;
-        position: absolute;
         color: inherit;
         display: flex;
         flex-direction: column;
@@ -247,9 +259,58 @@ body {
     align-items: center;
     &__dotts {
         flex: 1 1 auto;
+        @media (min-width: $md2+px) {
+            padding: 0px 20px 0px 0px;
+        }
+        @media (max-width: $md2+px) {
+            justify-content: center;
+        }
     }
-    &__arrows {}
+    &__arrows {
+        @media (max-width: $md2+px) {
+            display: none;
+        }
+    }
 }
 
 //===================================================================================================================================
+.advantages {
+    @include adaptiv-value("padding-top", 88, 30, 1);
+    @include adaptiv-value("padding-bottom", 88, 30, 1);
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    &__items {
+        display: inline-grid;
+        padding: 15px 0;
+        grid-template: auto auto / 85px 1fr;
+        @media (max-width: $md2+px) {
+            min-width: 280px;
+        }
+        @media (max-width: $md3+px) {
+            grid-template: auto auto / auto 1fr;
+        }
+    }
+    &__icon {
+        text-align: center;
+        align-self: center;
+        grid-row: span 2;
+        @media (max-width: $md3+px) {
+            padding: 0 15px 0 0;
+        }
+    }
+    &__title {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 150%;
+        margin: 0px 0px 0.1111111em 0px;
+    }
+    &__text {
+        line-height: 150%;
+        color: $grayColor;
+    }
+}
+
 //</ОСНОВНОЙ БЛОК>====================================================================================================

@@ -20,4 +20,20 @@ window.onload = function() {
 
         }
     }
+
+    //Header
+    const headerElement = document.querySelector('.header');
+
+    const callback = function(entries, observe) {
+        if (entries[0].isIntersecting) {
+            headerElement.classList.remove('_scroll');
+        } else {
+            headerElement.classList.add('_scroll');
+
+        }
+    }
+
+    const headerObserer = new IntersectionObserver(callback);
+    headerObserer.observe(headerElement);
+
 }

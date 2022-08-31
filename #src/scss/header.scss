@@ -298,37 +298,65 @@
             @include adaptiv-value("width", 40, 30, 1);
             @include adaptiv-value("height", 40, 30, 1);
         }
-        .cart-header {
-            &__icon {
-                color: #262f56;
-                font-size: 24px;
-                transition: color 0.3s ease 0s;
-                position: relative;
-                display: block;
-                @media (any-hover: hover) {
-                    &:hover {
-                        color: $orangeColor;
-                    }
-                }
-                span {
-                    position: absolute;
-                    width: 20px;
-                    height: 20px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    top: -10px;
-                    right: -10px;
-                    border-radius: 50%;
-                    background-color: $orangeColor;
-                    color: #fff;
-                    font-size: 12px;
+    }
+    
+    .cart-header {
+        &__icon {
+            color: #262f56;
+            font-size: 24px;
+            transition: color 0.3s ease 0s;
+            position: relative;
+            display: block;
+            @media (any-hover: hover) {
+                &:hover {
+                    color: $orangeColor;
                 }
             }
-            &__body {}
-            &__list {}
-            &-list {}
+            span {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                top: -10px;
+                right: -10px;
+                border-radius: 50%;
+                background-color: $orangeColor;
+                color: #fff;
+                font-size: 12px;
+            }
         }
+        &__body {
+            background: #f4f5f7;
+            border: 1px solid #e0e0e0;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            padding: 15px;
+            width: 300px;
+            z-index: 5;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease 0s;
+            transform: translate(0px, 20px);
+            ._active & {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(0px, 0px);
+            }
+            @media (max-width: $md2+px) {
+                top: 50px;
+            }
+            @media (max-width: $md3+px) {
+                position: fixed;
+                top: 50px;
+                left: 0;
+                width: 100%;
+            }
+        }
+        &__list {}
+        &-list {}
     }
     
     .icon-menu {
@@ -369,6 +397,53 @@
                         bottom: calc(50% - 1px);
                     }
                 }
+            }
+        }
+    }
+    
+    .cart-list {
+        overflow: auto;
+        max-height: 200px;
+        &__image {
+            flex: 0 0 100px;
+            height: 100px;
+        }
+        &__body {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px 0px 0px 10px;
+        }
+        &__title {
+            color: inherit;
+            font-weight: 600;
+            transition: color 0.3s ease 0s;
+            margin: 0px 0px 0.3125em 0px;
+            @media (any-hover: hover) {
+                &:hover {
+                    color: $orangeColor;
+                }
+            }
+        }
+        &__quantity {
+            font-size: 14px;
+            margin: 0px 0px 0.3125em 0px;
+        }
+        &__delete {
+            color: red;
+            font-size: 14px;
+            @media (any-hover: hover) {
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+        &__item {
+            display: flex;
+            align-items: flex-start;
+            &:not(:last-child) {
+                padding: 0px 0px 15px 0px;
             }
         }
     }

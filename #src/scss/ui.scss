@@ -27,6 +27,7 @@
     }
     
     .slider-arrow {
+        pointer-events: auto;
         border-radius: 50%;
         height: 48px;
         background-color: rgb(232, 159, 113, 0.3);
@@ -50,7 +51,7 @@
                 background-color: rgb(232, 159, 113, 1);
             }
         }
-        &_whith {
+        &_white {
             box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
             background-color: #fff;
             @media (any-hover: hover) {
